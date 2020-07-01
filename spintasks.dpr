@@ -2,13 +2,13 @@
 
 uses
   Vcl.Forms,
-  Main in 'Main.pas' {Form4};
+  Main in 'Main.pas' {frmMain};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm4, Form4);
+  Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Threading, Vcl.StdCtrls, Vcl.Samples.Gauges, Vcl.ExtCtrls;
 
 type
-  TForm4 = class(TForm)
+  TfrmMain = class(TForm)
     GaugeAni: TGauge;
     btnLongQuery: TButton;
     Timer1: TTimer;
@@ -24,13 +24,13 @@ type
   end;
 
 var
-  Form4: TForm4;
+  frmMain: TfrmMain;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm4.btnLongQueryClick(Sender: TObject);
+procedure TfrmMain.btnLongQueryClick(Sender: TObject);
 begin
   if Assigned(task) and (task.Status = TTaskStatus.Running) then
     exit;
@@ -62,7 +62,7 @@ begin
 
 end;
 
-procedure TForm4.ShowProgress(text: string);
+procedure TfrmMain.ShowProgress(text: string);
 begin
   TThread.Synchronize(nil,
     procedure()
@@ -71,7 +71,7 @@ begin
     end);
 end;
 
-procedure TForm4.AniEnabler(setstate: Boolean);
+procedure TfrmMain.AniEnabler(setstate: Boolean);
 begin
   TThread.Synchronize(nil,
     procedure()
@@ -82,7 +82,7 @@ begin
     end);
 end;
 
-procedure TForm4.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if Assigned(task) and (task.Status = TTaskStatus.Running) then
   begin
@@ -93,7 +93,7 @@ begin
     CanClose := true;
 end;
 
-procedure TForm4.Timer1Timer(Sender: TObject);
+procedure TfrmMain.Timer1Timer(Sender: TObject);
 begin
   GaugeAni.Progress := GaugeAni.Progress + 1;
   if GaugeAni.Progress >= GaugeAni.MaxValue then
